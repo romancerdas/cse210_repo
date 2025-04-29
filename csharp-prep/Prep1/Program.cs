@@ -1,5 +1,6 @@
 using System;
 using System.Reflection.Metadata;
+using System.Security.Authentication;
 
 class Program
 {
@@ -7,30 +8,14 @@ class Program
     {
         Console.WriteLine("Hello Prep1 World!");
 
-        int x=5;
-        string s="asdf";
+        Console.WriteLine("what is your first name? ");
+        string firstname = Console.ReadLine();
+        Console.WriteLine("What is your last name? ");
+        string lastname = Console.ReadLine();
 
-        Console.WriteLine(x);
-        Console.WriteLine(s);
-
-        string q=Console.ReadLine();
-        Console.WriteLine(q);
-
-        string y=Console.ReadLine();
-        Console.WriteLine($"This is the value that was entered: {y}");
-        Console.WriteLine("This is the value that was entered: " + y);
+        Console.WriteLine($"Your name is {lastname}, {firstname} {lastname}.");
 
 
-        int r=0;
-        if (r>0)
-        {
-            ;// do nothing
-        }
-        else if (r=0);
-        {
-            Console.WriteLine($"The number was {0}");
-        }
-        string userInput = Console.ReadLine()
-        int userInputAsInt = int.Parse(userInput);
+
     }
 }
