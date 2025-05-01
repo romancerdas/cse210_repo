@@ -66,7 +66,7 @@ class Program
 
             Random randomGenerator = new Random();
             magicNumberAsInt = randomGenerator.Next(1,101);        
-            int guessCounter = 0;
+            int guessCounter = -1;
             do
             {
 
