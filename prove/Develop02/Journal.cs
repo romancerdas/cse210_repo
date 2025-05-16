@@ -2,13 +2,13 @@ using System;
 
 public class Journal
 {
-    public Dictionary<string,string> _entryDict = new Dictionary<string, string>();
+    public List<string> _entryAsList = new List<string>();
 
-    public void DisplayEntries (_entryDict)
+    public void DisplayEntries()
     {
-        foreach (var jEntry in (_entryDict)
+        foreach (string entry in _entryAsList)
         {
-            Console.WriteLine(jEntry);
+            Console.WriteLine(entry);
         }
     }
     public void LoadEntry()
