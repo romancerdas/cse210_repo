@@ -1,8 +1,4 @@
 using System;
-using System.Data.Common;
-using System.IO;
-using System.IO.Enumeration;
-using Microsoft.VisualBasic;
 
 class Program
 {
@@ -12,9 +8,10 @@ class Program
 
         /* Create a new instance of the class Journal*/
         Journal newJournal = new Journal();
+        PromptGenerator promptGenerator = new PromptGenerator();
 
         string menuSelect = "0";
-        string filename;
+        string filename = "";
 
         while (menuSelect != "5")
         {
@@ -25,41 +22,47 @@ class Program
 
             if (menuSelect == "1")
             {
-                Console.Write("Enter text to add to the journal:\n>");
-                newJournal._entryAsList.Add(Console.ReadLine());
+                Console.Write("Enter text to add to the journal:\n");
+
+                string givenPrompt = promptGenerator.givePrompt();
+                Console.WriteLine($"{givenPrompt}\n>");
+
+                DateTime theCurrentTime = DateTime.Now;
+                string dateText = theCurrentTime.ToShortDateString();
+                newJournal._entryAsList.Add($"{dateText} -- {givenPrompt} -- {Console.ReadLine()}");
             }
-            
+
+            /* load a journal from a file*/
             else if (menuSelect == "4")
             {
                 Console.WriteLine("What is the name of the file? ");
                 filename = Console.ReadLine();
 
+                /* read each line in the file*/
                 string[] entries = System.IO.File.ReadAllLines(filename);
 
-                // test to see if entries display 
-                // foreach (string entry in entries)
-                // {
-                //     Console.Write($"{entry}\n");
-                // }
+                /* write each entry from the file back into local memory for manipulation*/
+                foreach (string entry in entries)
+                {
+                    newJournal._entryAsList.Add(entry);
+                }
 
             }
 
-            /* view entries from a saved file or recently written journal entries*/ //*THIS IS CHATGPT CODE, REVIEW BEFORE MOVING ON*/
+            /* view local entries */ 
             else if (menuSelect == "2")
             {
-                if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
+                /* run code if filename has been entered*/
+                if (filename != "")
                 {
-                    Console.WriteLine("Entries loaded from file:\n");
-                    string[] fileEntries = File.ReadAllLines(filename);
-
-                    foreach (string entry in fileEntries)
+                    foreach (string entry in newJournal._entryAsList)
                     {
                         Console.WriteLine(entry);
                     }
                 }
+                /* run code if variable filename has not been changed by user*/
                 else
                 {
-                    Console.WriteLine("Unsaved entries in memory:\n");
                     newJournal.DisplayEntries();
                 }
             }
@@ -79,8 +82,6 @@ class Program
                 }
 
             }
-            /* load journal from file*/
-
         }
     }
 }
