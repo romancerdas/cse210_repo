@@ -1,5 +1,5 @@
 using System.ComponentModel;
-
+using common;
 class PromptActivity : Activity
 {
     List<string> _listOfPrompts;
@@ -12,7 +12,9 @@ class PromptActivity : Activity
 
     protected string selectPrompt()
     {
-        return "";
+        int randomInt = common.RandomNumberGenerator.getRandomNumber(_listOfPrompts.Count());
+        string randomPrompt = _listOfPrompts[randomInt];
+        return randomPrompt;
     }
 
     protected void displayPrompt()

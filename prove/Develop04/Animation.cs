@@ -10,9 +10,13 @@ public class Animation
         int i = 0;
         while (DateTime.Now < endTime)
         {
-            Console.Write(animationStrings[i]);
+            Console.Write("\r" + animationStrings[i]);
             Thread.Sleep(500);
-            i = (i+1) % animationStrings.Count;
+            i = (i + 1) % animationStrings.Count;
         }
+        Console.Write("\r "); 
+        Console.Write("\r "); 
+        Console.WriteLine();
+        
     }
 }
