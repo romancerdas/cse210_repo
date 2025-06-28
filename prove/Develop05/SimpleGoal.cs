@@ -1,29 +1,43 @@
+using System.Dynamic;
+
 public class SimpleGoal : Goal
 {
 
-    public SimpleGoal(string name, string description, string basePoints, bool isDone)
-    : base(name,description,basePoints,isDone)
+    public SimpleGoal(string name, string description, int basePoints, bool isDone)
+    : base(name, description, basePoints, isDone)
     {
     }
 
-    protected override void recordEvent()
+    public override void recordEvent()
     {
-        throw new NotImplementedException();
-    }
+        if (this.getisDone() != true)
+        {
+            this.setisDone();
+            Console.WriteLine($"You earned {getPoints()} points!");
+        }
+        else
+        {
+            Console.WriteLine("This goal is already complete.");
+        }
 
-    protected override string getCompletionStatus()
-    {
-        throw new NotImplementedException();
     }
-
-    protected override void sendToFile()
-    {
-        throw new NotImplementedException();
-    }
-        public void CreateNewSimpleGoal()
+    
+    public void CreateNewSimpleGoal()
     {
         setName();
         setDescription();
         setPoints();
+    }
+
+    public override string getStringForm()
+    {
+        return $"SimpleGoal:{getName()},{getDescription()},{getPoints()},{getisDone()}";
+    }
+
+    public override string getDisplayString()
+    {
+        // line 49 uses a ternary operator, which checks the isDone status, then uses the string according to the status 
+        string checkbox = this.getisDone() ? "[X]" : "[ ]";
+        return $"{checkbox} {getName()} ({getDescription()})";
     }
 }

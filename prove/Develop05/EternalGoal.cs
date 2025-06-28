@@ -1,25 +1,11 @@
 public class EternalGoal : Goal
 {
-    public EternalGoal(string name, string description, int userScore, string basePoints, bool isDone) : base(name, description, userScore, basePoints, isDone) { }
+    public EternalGoal(string name, string description, int basePoints, bool isDone)
+    : base(name, description, basePoints, isDone) { }
 
-    protected override void recordEvent()
+    public override void recordEvent()
     {
-        throw new NotImplementedException();
-    }
-
-    // protected override int getScore()
-    // {
-    //     throw new NotImplementedException();
-    // }
-
-    protected override string getCompletionStatus()
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void sendToFile()
-    {
-        throw new NotImplementedException();
+        Console.WriteLine($"You made progress on '{this.getName()}' and earned {this.getPoints()} points!");
     }
 
     public void CreateNewEternalGoal()
@@ -28,4 +14,16 @@ public class EternalGoal : Goal
         setDescription();
         setPoints();
     }
+
+    public override string getDisplayString()
+    {
+        string checkbox = this.getisDone() ? "[X]" : "[ ]";
+        return $" {checkbox} {this.getName()} ({this.getDescription()})";
+    }
+
+    public override string getStringForm()
+    {
+        return $"EternalGoal:{this.getName()},{this.getDescription()},{this.getPoints()}";
+    }
+
 }

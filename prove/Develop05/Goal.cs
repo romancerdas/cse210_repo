@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Data.Common;
 using System.Dynamic;
 
 public abstract class Goal
@@ -6,47 +7,60 @@ public abstract class Goal
     private string _name;
     private string _description;
     private int _basePoints;
-    protected bool _isDone;
+    private bool _isDone;
 
-    public Goal(string name, string description, int userScore, string basePoints, bool isDone)
+    public Goal(string name, string description, int basePoints, bool isDone)
     {
         _name = name;
         _description = description;
-        _basePoints = int.Parse(basePoints);
+        _basePoints = basePoints;
         _isDone = isDone;
     }
 
-    protected abstract void recordEvent();
+    public abstract void recordEvent();
+    public abstract string getStringForm();
 
-    // protected abstract int getScore();
-
-    protected abstract string getCompletionStatus();
-
-    protected abstract void sendToFile();
+    public abstract string getDisplayString();
 
 
     protected void setName()
     {
         Console.WriteLine("What is your goal?");
-        string goalname = Console.ReadLine();
-        goalname = _name;
-        // return goalname;
+        _name = Console.ReadLine();
     }
+    public string getName()
+    {
+        return _name;
+    }
+
     protected void setDescription()
     {
         Console.WriteLine("Give a short description of the goal:");
-        string desc = Console.ReadLine();
-        desc = _description;
-        // return desc;
+        _description = Console.ReadLine();
+
+    }
+    public string getDescription()
+    {
+        return _description;
     }
 
     protected void setPoints()
     {
         Console.WriteLine("How many points do you want for completing this goal? ");
-        string points = Console.ReadLine();
-        points = _basePoints.ToString();
+        _basePoints = int.Parse(Console.ReadLine());
         // return points;
     }
+    public int getPoints()
+    {
+        return _basePoints;
+    }
 
-
+    protected void setisDone()
+    {
+        this._isDone = true;
+    }
+    public bool getisDone()
+    {
+        return _isDone;
+    }
 }
