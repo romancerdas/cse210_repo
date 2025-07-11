@@ -3,7 +3,7 @@ public class Comment
     public string _person;
     public string _text;
 
-    new Comment(string person, string text)
+    public Comment(string person, string text)
     {
         _person = person;
         _text = text;
@@ -21,6 +21,6 @@ public class Comment
 
     public string GetDisplayComment()
     {
-        return $"{_author}: {_text}";
+        return $"{_person}: {_text}";
     }
 }
