@@ -7,5 +7,7 @@ public class Lecture : Event{
         _capacity = capacity;
     }
 
-
+    protected string GetFullDescription(){
+        return $"{GetStandardDescription()} \nSpeaker: {_speaker} \nCapacity: {_capacity}";
+    }
 }
