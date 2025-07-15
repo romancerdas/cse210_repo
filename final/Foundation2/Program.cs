@@ -26,8 +26,8 @@ class Program
         list2.Add(product3);
         list2.Add(product4);
 
-        Order order1 = new Order(customer1, list1, "", "");
-        Order order2 = new Order(customer2, list2, "", "");
+        Order order1 = new Order(customer1, list1);
+        Order order2 = new Order(customer2, list2);
 
         Console.WriteLine("Order 1:");
         Console.WriteLine($"Total Price: {order1.GetTotalPrice():F2}");

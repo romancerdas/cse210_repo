@@ -8,12 +8,12 @@ public class Order
     private string _shippinglabel;
     private string _packinglabel;
 
-    public Order(Customer customer, List<Product> listofproducts, string shippinglabel, string packinglabel)
+    public Order(Customer customer, List<Product> listofproducts)
     {
         _customer = customer;
         _ListOfProducts = listofproducts;
-        _shippinglabel = CreateShippingLabel();
-        _packinglabel = CreatePackingLabel();
+        // _shippinglabel = CreateShippingLabel();
+        // _packinglabel = CreatePackingLabel();
     }
 
     public string CreateShippingLabel()
