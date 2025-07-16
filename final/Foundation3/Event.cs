@@ -2,23 +2,21 @@ public class Event
 {
     private string _title;
     private string _description;
-    private DateTime _date;
-    private DateTime _time;
+    private DateTime _dateTime;
     private Address _address;
 
-    public Event(string title, string description, DateTime date, DateTime time, Address address){
+    public Event(string title, string description, DateTime dateTime, Address address){
         _title = title;
         _description = description;
-        _date = date;
-        _time = time;
+        _dateTime = dateTime;
         _address = address;
     }
 
-    protected string GetStandardDescription(){
-        return $"Title: {_title} \nDescription: {_description} \nDate: {_date} @ {_time} \nAddress: {_address}";
+    public string GetStandardDescription(){
+        return $"Title: {_title} \nDescription: {_description} \nDate: {_dateTime} \nAddress: {_address.DisplayFullAddress()}";
     }
 
-    protected string GetShortDescription(){
-        return $"Event Type: {this.GetType().Name} \nTitle: {_title} \nDate: {_date}";
+    public string GetShortDescription(){
+        return $"Event Type: {this.GetType().Name} \nTitle: {_title} \nDate: {_dateTime}";
     }
 }
