@@ -26,6 +26,6 @@ public class Activity
 
     public string GetSummary()
     {
-        return $"{_date} ({_duration}) - Distance: {GetDistance()}, Speed: {GetSpeed()} Pace: {GetPace()} per mile";
+        return $"{_date} {this.GetType().Name} ({_duration} min) - Distance: {GetDistance():F2} miles, Speed: {GetSpeed():F2} mph, Pace: {GetPace():F2} min per mile";
     }
 }
